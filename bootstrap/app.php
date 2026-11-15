@@ -12,6 +12,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Railway terminates TLS at its edge proxy and forwards plain HTTP,
+        // so trust its X-Forwarded-* headers to detect HTTPS correctly
+        // (needed for SESSION_SECURE_COOKIE and asset URL generation).
+        $middleware->trustProxies(at: '*');
+
         $middleware->web(append: [
             \App\Http\Middleware\HandleInertiaRequests::class,
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
