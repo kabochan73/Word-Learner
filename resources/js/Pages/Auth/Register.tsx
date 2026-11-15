@@ -4,16 +4,16 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
+import { FormEventHandler } from 'react';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
-        email: '',
         password: '',
         password_confirmation: '',
     });
 
-    const submit = (e) => {
+    const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
         post(route('register'), {
@@ -34,30 +34,13 @@ export default function Register() {
                         name="name"
                         value={data.name}
                         className="mt-1 block w-full"
-                        autoComplete="name"
+                        autoComplete="username"
                         isFocused={true}
                         onChange={(e) => setData('name', e.target.value)}
                         required
                     />
 
                     <InputError message={errors.name} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
