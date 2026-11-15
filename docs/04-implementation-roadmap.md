@@ -67,9 +67,9 @@ susida1の`app/` `routes/` `database/` `resources/`を参考資料にしなが�
 
 ## フェーズ5: ローカル動作確認
 
-- [ ] 28. `.env`作成・`docker compose up -d --build`
-- [ ] 29. `composer install` `php artisan key:generate` `php artisan migrate`
-- [ ] 30. 登録→ログイン→プレイ(学習/チャレンジ×各級)→スコア保存→ランキング表示までの一連の動作をブラウザで確認
+- [x] 28. `.env`作成・`docker compose up -d --build`
+- [x] 29. `composer install` `php artisan key:generate` `php artisan migrate`
+- [x] 30. 登録→ログイン→プレイ(学習/チャレンジ×各級)→スコア保存→ランキング表示までの一連の動作をブラウザで確認
 
 ## フェーズ6: Railwayへの本番デプロイ
 
