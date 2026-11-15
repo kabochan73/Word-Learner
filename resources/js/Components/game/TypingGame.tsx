@@ -13,7 +13,7 @@ export default function TypingGame({ state }: { state: GameState }) {
             <div className="mx-auto max-w-xl px-6 py-10 text-center">
                 <Timer remainingMs={state.remainingMs} />
 
-                <hr className="my-8 border-b border-gray-300" />
+                <hr className="my-8 border-b border-gray-400" />
 
                 <p className="mt-6 text-4xl font-bold">
                     {state.currentWord.meaning}

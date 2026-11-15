@@ -5,7 +5,7 @@ const NAV_LINK_CLASS = 'text-lg text-gray-700 underline hover:font-bold';
 
 export default function Header({ user }: { user: User | null }) {
     return (
-        <div className="flex w-full items-center justify-between border-b border-gray-300 px-12 py-4">
+        <div className="flex w-full items-center justify-between border-b border-gray-700 px-12 py-4">
             <Link href="/" className="text-2xl font-bold tracking-widest">
                 WORD LEARNER
             </Link>

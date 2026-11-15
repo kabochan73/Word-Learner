@@ -36,8 +36,15 @@ export default function Home({
 
             <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 p-6 lg:grid-cols-4">
                 <div className="lg:col-span-3">
+                    <h1 className="mt-2 text-4xl font-bold">
+                        A typing game made just for you.
+                    </h1>
+                    <p className="mt-2 text-2xl font-bold">
+                        Words make you stronger.
+                    </p>
+
                     <div className="mt-8">
-                        <p className="text-sm uppercase tracking-widest text-gray-700">
+                        <p className="text-lg uppercase tracking-widest text-gray-700">
                             Select level
                         </p>
                         <LevelSelect
@@ -47,7 +54,7 @@ export default function Home({
                     </div>
 
                     <div className="mt-6">
-                        <p className="text-sm uppercase tracking-widest text-gray-700">
+                        <p className="text-lg uppercase tracking-widest text-gray-700">
                             Select mode
                         </p>
                         <ModeSelect value={mode} onChange={setMode} />
