@@ -1,4 +1,8 @@
-import { DURATION_SEC, QUESTION_TIME_LIMIT_SEC } from '@/lib/customize/game-config';
+import {
+    COUNTDOWN_SEC,
+    DURATION_SEC,
+    QUESTION_TIME_LIMIT_SEC,
+} from '@/lib/customize/game-config';
 import { Grade } from '@/lib/customize/words';
 import { GameState, handleKeyInput, Mode } from '@/lib/judge';
 import { createWordQueue, drawNextWord } from '@/lib/queue';
@@ -8,7 +12,7 @@ function createInitialState(grade: Grade, mode: Mode): GameState {
     const [currentWord, ...rest] = createWordQueue(grade);
 
     return {
-        status: 'playing',
+        status: 'idle',
         grade,
         mode,
         currentWord,
@@ -68,7 +72,28 @@ export function useGameLoop(grade: Grade, mode: Mode) {
     const [state, setState] = useState<GameState>(() =>
         createInitialState(grade, mode),
     );
+    const [countdown, setCountdown] = useState(COUNTDOWN_SEC);
     const lastTickRef = useRef<number>(performance.now());
+
+    useEffect(() => {
+        if (state.status !== 'idle') {
+            return;
+        }
+
+        const interval = setInterval(() => {
+            setCountdown((prev) => {
+                if (prev <= 1) {
+                    setState((s) =>
+                        s.status === 'idle' ? { ...s, status: 'playing' } : s,
+                    );
+                    return 0;
+                }
+                return prev - 1;
+            });
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [state.status]);
 
     useEffect(() => {
         if (state.status !== 'playing') {
@@ -98,7 +123,8 @@ export function useGameLoop(grade: Grade, mode: Mode) {
 
     const restart = () => {
         setState(createInitialState(grade, mode));
+        setCountdown(COUNTDOWN_SEC);
     };
 
-    return { state, onKeyInput, restart };
+    return { state, onKeyInput, countdown, restart };
 }

@@ -48,44 +48,14 @@ export default function ResultScreen({
                 <p className="mt-2 text-7xl font-bold">{score}</p>
                 <p className="mt-2 text-2xl text-gray-700">正解</p>
 
-                {mode === 'practice' && (
-                    <p className="mt-6 text-gray-600">
-                        チャレンジモードで挑戦するとランキングに参加できます
-                    </p>
-                )}
-
-                {mode === 'challenge' && !auth.user && (
-                    <p className="mt-6 text-gray-600">
-                        <Link href="/login" className="underline">
-                            ログインする
-                        </Link>
-                        とランキングに記録されます
-                    </p>
-                )}
-
-                {mode === 'challenge' && auth.user && (
-                    <>
-                        {saveState === 'saved' && (
-                            <p className="mt-6 text-gray-600">
-                                <Link
-                                    href={`/?grade=${grade}`}
-                                    className="underline"
-                                >
-                                    ランキングを見る
-                                </Link>
-                            </p>
-                        )}
-
-                        {saveState === 'error' && (
-                            <button
-                                type="button"
-                                onClick={save}
-                                className="mt-6 text-red-600 underline"
-                            >
-                                保存に失敗しました。再試行する
-                            </button>
-                        )}
-                    </>
+                {mode === 'challenge' && auth.user && saveState === 'error' && (
+                    <button
+                        type="button"
+                        onClick={save}
+                        className="mt-6 text-red-600 underline"
+                    >
+                        保存に失敗しました。再試行する
+                    </button>
                 )}
 
                 <div className="mt-10 flex items-center justify-center gap-4">

@@ -9,3 +9,6 @@ export const BONUS_SECONDS = 2;
 
 // CUSTOMIZE: チャレンジモードで1問に使える時間(秒)。超えると自動でスキップされる
 export const QUESTION_TIME_LIMIT_SEC = 7;
+
+// CUSTOMIZE: START GAMEを押してから実際にゲームが始まるまでのカウントダウン秒数
+export const COUNTDOWN_SEC = 3;
