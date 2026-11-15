@@ -62,8 +62,8 @@ susida1の`app/` `routes/` `database/` `resources/`を参考資料にしなが�
 
 ### 3-D. テスト
 
-- [ ] 26. バックエンド側のテスト: `tests/`
-- [ ] 27. フロントエンド側のテスト: `resources/js/tests/`
+- [x] 26. バックエンド側のテスト: `tests/`(Auth・GameSessionの既存テストに加え、`ExampleTest`に`RefreshDatabase`が無く`/`アクセス時に失敗していたのを修正)
+- [x] 27. フロントエンド側のテスト: `resources/js/tests/`(format/queue/judgeのvitestテスト、Susida1対応時に追加済み)
 
 ## フェーズ5: ローカル動作確認
 
