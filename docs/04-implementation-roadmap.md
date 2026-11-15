@@ -46,7 +46,7 @@ susida1の`app/` `routes/` `database/` `resources/`を参考資料にしなが�
 ### 3-B. ゲーム本体(ゲームエンジン)
 
 - [x] 15. お題データ(`resources/js/lib/customize/words/`)・出題キュー(`lib/queue.ts`)・入力判定(`lib/judge.ts`)・設定定数(`lib/customize/game-config.ts`)・`lib/format.ts`
-- [ ] 16. ゲーム状態管理(`hooks/useGameLoop.ts`)・定数(`lib/customize/game-config.ts`)
+- [x] 16. ゲーム状態管理(`hooks/useGameLoop.ts`)。開始前カウントダウンは設計書に無いため実装せず、即`playing`で開始
 - [ ] 17. `PlayController`・`routes/web.php`の`/play`ルート
 - [ ] 18. `Pages/Play.tsx`・タイピングUI関連コンポーネント(`Components/game/`)
 - [ ] 19. 動作確認(級・モード選択→タイピング→タイムアップ)してコミット(DB保存はまだ行わない)
