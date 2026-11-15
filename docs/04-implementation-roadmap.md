@@ -73,6 +73,6 @@ susida1の`app/` `routes/` `database/` `resources/`を参考資料にしなが�
 
 ## フェーズ6: Railwayへの本番デプロイ
 
-- [ ] 31. Railwayプロジェクトを作成しPostgresプラグイン・`app`サービスを追加、環境変数設定([infra/railway.md](./infra/railway.md))
-- [ ] 32. ビルドステップで`composer install --no-dev`・`npm ci && npm run build`が通ることを確認
-- [ ] 33. 自動生成ドメインでログイン→スコア保存→ランキング表示までの一連の動作を確認
+- [x] 31. Railwayプロジェクトを作成しPostgresプラグイン・`app`サービスを追加、環境変数設定(`docker/Dockerfile.prod`をDOCKERFILEビルダーとして指定)
+- [x] 32. ビルドステップで`npm run build`・`composer install --no-dev`が通ることを確認(本番Dockerfile内で実行・ローカルでも検証済み)
+- [x] 33. 自動生成ドメインでログイン→プレイ→スコア保存→ランキング表示までの一連の動作を確認
