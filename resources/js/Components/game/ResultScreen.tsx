@@ -1,16 +1,42 @@
 import { Grade } from '@/lib/customize/words';
-import { Link } from '@inertiajs/react';
+import { Mode } from '@/lib/judge';
+import { PageProps } from '@/types';
+import { Link, usePage } from '@inertiajs/react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import GamePageHeader from './GamePageHeader';
+
+type SaveState = 'idle' | 'saving' | 'saved' | 'error';
 
 export default function ResultScreen({
     grade,
+    mode,
     score,
     onRetry,
 }: {
     grade: Grade;
+    mode: Mode;
     score: number;
     onRetry: () => void;
 }) {
+    const { auth } = usePage<PageProps>().props;
+    const [saveState, setSaveState] = useState<SaveState>('idle');
+
+    const save = () => {
+        setSaveState('saving');
+        axios
+            .post('/game-sessions', { grade, score })
+            .then(() => setSaveState('saved'))
+            .catch(() => setSaveState('error'));
+    };
+
+    useEffect(() => {
+        if (mode === 'challenge' && auth.user) {
+            save();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
         <div>
             <GamePageHeader grade={grade} />
@@ -21,6 +47,46 @@ export default function ResultScreen({
                 </p>
                 <p className="mt-2 text-7xl font-bold">{score}</p>
                 <p className="mt-2 text-2xl text-gray-700">正解</p>
+
+                {mode === 'practice' && (
+                    <p className="mt-6 text-gray-600">
+                        チャレンジモードで挑戦するとランキングに参加できます
+                    </p>
+                )}
+
+                {mode === 'challenge' && !auth.user && (
+                    <p className="mt-6 text-gray-600">
+                        <Link href="/login" className="underline">
+                            ログインする
+                        </Link>
+                        とランキングに記録されます
+                    </p>
+                )}
+
+                {mode === 'challenge' && auth.user && (
+                    <>
+                        {saveState === 'saved' && (
+                            <p className="mt-6 text-gray-600">
+                                <Link
+                                    href={`/?grade=${grade}`}
+                                    className="underline"
+                                >
+                                    ランキングを見る
+                                </Link>
+                            </p>
+                        )}
+
+                        {saveState === 'error' && (
+                            <button
+                                type="button"
+                                onClick={save}
+                                className="mt-6 text-red-600 underline"
+                            >
+                                保存に失敗しました。再試行する
+                            </button>
+                        )}
+                    </>
+                )}
 
                 <div className="mt-10 flex items-center justify-center gap-4">
                     <Link

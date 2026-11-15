@@ -41,6 +41,7 @@ function PlayGame({ grade, mode }: { grade: Grade; mode: Mode }) {
             {state.status === 'finished' ? (
                 <ResultScreen
                     grade={grade}
+                    mode={mode}
                     score={state.score}
                     onRetry={restart}
                 />
