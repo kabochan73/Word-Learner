@@ -1,5 +1,7 @@
 {
     "$schema": "https://www.schemastore.org/package.json",
+    "name": "word-learner",
+    "description": "お題入れ替え式のタイピングゲームのテンプレート(寿司打のゲームメカニクスを引き継ぐ)。",
     "private": true,
     "type": "module",
     "scripts": {
