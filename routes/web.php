@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PlayController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -12,5 +13,7 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('/play', [PlayController::class, 'show'])->name('play');
 
 require __DIR__.'/auth.php';
