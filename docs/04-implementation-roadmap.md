@@ -55,7 +55,7 @@ susida1の`app/` `routes/` `database/` `resources/`を参考資料にしなが�
 
 - [x] 20. `game_sessions`マイグレーション・`GameSession`モデル・`RecordGameSession` Action
 - [x] 21. `GameSessionController`(`POST /game-sessions`)・`StoreGameSessionRequest`(動作確認用に`tests/Feature/GameSessionTest.php`も作成)
-- [ ] 22. `HomeController`(ランキング集計クエリ)・`routes/web.php`の`/`ルート
+- [x] 22. `HomeController`(ランキング集計クエリ)・`routes/web.php`の`/`ルート(不要になった`Welcome.tsx`は削除。`Home.tsx`はステップ23で作成)
 - [ ] 23. `Pages/Home.tsx`(級・モード選択、`Components/home/`)・`Components/ranking/RankingSidebar`
 - [ ] 24. 結果画面でのスコア保存(`Components/game/ResultScreen`)
 - [ ] 25. 動作確認(チャレンジモードでプレイ→スコア保存→ランキング反映)してコミット
