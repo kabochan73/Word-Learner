@@ -96,5 +96,9 @@ export function useGameLoop(grade: Grade, mode: Mode) {
         );
     };
 
-    return { state, onKeyInput };
+    const restart = () => {
+        setState(createInitialState(grade, mode));
+    };
+
+    return { state, onKeyInput, restart };
 }
