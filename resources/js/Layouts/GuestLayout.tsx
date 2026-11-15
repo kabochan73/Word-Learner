@@ -1,19 +1,15 @@
-import ApplicationLogo from '@/Components/ApplicationLogo';
-import { Link } from '@inertiajs/react';
+import Header from '@/Components/Header';
+import { PageProps } from '@/types';
+import { usePage } from '@inertiajs/react';
 import { PropsWithChildren } from 'react';
 
 export default function GuestLayout({ children }: PropsWithChildren) {
-    return (
-        <div className="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0">
-            <div>
-                <Link href="/">
-                    <ApplicationLogo className="h-20 w-20 fill-current text-gray-500" />
-                </Link>
-            </div>
+    const { auth } = usePage<PageProps>().props;
 
-            <div className="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg">
-                {children}
-            </div>
+    return (
+        <div className="min-h-screen">
+            <Header user={auth.user} />
+            <div className="mx-auto max-w-md px-6 py-16">{children}</div>
         </div>
     );
 }
