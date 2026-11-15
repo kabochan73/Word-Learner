@@ -39,7 +39,7 @@ susida1の`app/` `routes/` `database/` `resources/`を参考資料にしなが�
 
 - [x] 10. `users`マイグレーションの調整(email系カラム削除、name をUNIQUEに)、`password_reset_tokens`マイグレーション削除、`User`モデルの調整
 - [x] 11. Breeze標準から不要な機能を削除(メール認証・パスワードリセット・プロフィール編集・Dashboard関連のController/Request/Route/テストを削除。対応するフロントのPage/Component削除はステップ13で実施)
-- [ ] 12. 残すログイン/登録のバックエンド調整(`routes/web.php`の認証系ルート、`LoginRequest`等の確認)
+- [x] 12. 残すログイン/登録のバックエンド調整(`LoginRequest`を`name`ベースに変更、remember機能削除、ダッシュボードへのリダイレクトを`/`に変更)
 - [ ] 13. 残すログイン/登録のフロントエンド(`Pages/Auth/Login` `Register`、`Layouts/GuestLayout`、共通UI `Components/`)をTypeScript化しつつ整理
 - [ ] 14. 動作確認(登録→ログイン→ログアウト)してコミット
 
