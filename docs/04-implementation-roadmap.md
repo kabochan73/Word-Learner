@@ -41,7 +41,7 @@ susida1の`app/` `routes/` `database/` `resources/`を参考資料にしなが�
 - [x] 11. Breeze標準から不要な機能を削除(メール認証・パスワードリセット・プロフィール編集・Dashboard関連のController/Request/Route/テストを削除。対応するフロントのPage/Component削除はステップ13で実施)
 - [x] 12. 残すログイン/登録のバックエンド調整(`LoginRequest`を`name`ベースに変更、remember機能削除、ダッシュボードへのリダイレクトを`/`に変更)
 - [x] 13. 残すログイン/登録のフロントエンド(`Pages/Auth/Login` `Register`、`Layouts/GuestLayout`、共通UI `Components/`)をTypeScript化しつつ整理(Dashboard・プロフィール編集・メール認証・パスワードリセット関連のPage/Componentを削除、`tsconfig.json`/型定義を追加)
-- [ ] 14. 動作確認(登録→ログイン→ログアウト)してコミット
+- [x] 14. 動作確認(登録→ログイン→ログアウト)してコミット(ログアウトは自動テスト`AuthenticationTest`で確認。UIのログアウト導線はHome.tsx実装時(ステップ23)に追加)
 
 ### 3-B. ゲーム本体(ゲームエンジン)
 
