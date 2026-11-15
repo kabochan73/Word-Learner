@@ -54,7 +54,7 @@ susida1の`app/` `routes/` `database/` `resources/`を参考資料にしなが�
 ### 3-C. スコア保存とランキング
 
 - [x] 20. `game_sessions`マイグレーション・`GameSession`モデル・`RecordGameSession` Action
-- [ ] 21. `GameSessionController`(`POST /game-sessions`)・`StoreGameSessionRequest`
+- [x] 21. `GameSessionController`(`POST /game-sessions`)・`StoreGameSessionRequest`(動作確認用に`tests/Feature/GameSessionTest.php`も作成)
 - [ ] 22. `HomeController`(ランキング集計クエリ)・`routes/web.php`の`/`ルート
 - [ ] 23. `Pages/Home.tsx`(級・モード選択、`Components/home/`)・`Components/ranking/RankingSidebar`
 - [ ] 24. 結果画面でのスコア保存(`Components/game/ResultScreen`)
