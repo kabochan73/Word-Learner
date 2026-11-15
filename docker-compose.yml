@@ -8,6 +8,18 @@ services:
     depends_on:
       - db
 
+  node:
+    image: node:22
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    working_dir: /var/www/html
+    environment:
+      npm_config_cache: /tmp/.npm
+    command: sh -c "npm install --legacy-peer-deps && npm run dev -- --host 0.0.0.0"
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "5173:5173"
+
   db:
     image: postgres:17
     environment:
