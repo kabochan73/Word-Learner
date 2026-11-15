@@ -29,7 +29,7 @@ susida1の`docs/`(を清書した`Susida2/docs/`)を1ファイルずつ確認し
 - [x] 6. `Word Learner`フォルダで新規に`git init`(susida1のgit履歴は引き継がない)
 - [x] 7. 設定ファイル: `composer.json`(name/description) `package.json`(name/description) `.env`/`.env.example`(APP_NAME)
 - [x] 8. インフラ定義: `docker-compose.yml`、`.env.example`(Laravel + Docker(PHP8.5) + Breeze(Inertia/React) + PostgreSQLまで構築・確認済み。Vite開発サーバーもDocker化済み)
-- [ ] 9. GitHubに新規リポジトリ`word-learner`を作成、初回コミット・push(pushはユーザー自身が行う方針)
+- [x] 9. GitHubに新規リポジトリ`word-learner`を作成、初回コミット・push(ユーザー自身が実施済み)
 
 ## フェーズ3・4: 機能単位の実装(バックエンド+フロントエンド)
 
