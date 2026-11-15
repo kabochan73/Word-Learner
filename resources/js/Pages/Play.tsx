@@ -23,10 +23,7 @@ export default function Play({ grade, mode }: { grade: string; mode: Mode }) {
 }
 
 function PlayGame({ grade, mode }: { grade: Grade; mode: Mode }) {
-    const { state, onKeyInput, countdown, restart } = useGameLoop(
-        grade,
-        mode,
-    );
+    const { state, onKeyInput, countdown, restart } = useGameLoop(grade, mode);
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {

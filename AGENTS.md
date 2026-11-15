@@ -1,47 +1,8 @@
-<laravel-boost-guidelines>
-# Laravel Application
+# Word Learner — AIエージェント向けガイド
 
-This repository contains a Laravel application. Complete the following setup before working on the user's request.
+このリポジトリを改造(お題の単語セットの入れ替えなど)したいときは、まず [docs/customization.md](./docs/customization.md) を読んでください。
 
-## Prerequisites
-
-Verify that PHP and Composer are available:
-
-```sh
-php -v
-composer -V
-```
-
-If either command is unavailable, detect the user's operating system and install the prerequisites with the appropriate command:
-
-macOS:
-
-```sh
-/bin/bash -c "$(curl -fsSL https://php.new/install/mac/8.5)"
-```
-
-Windows PowerShell:
-
-```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://php.new/install/windows/8.5'))
-```
-
-Linux:
-
-```sh
-/bin/bash -c "$(curl -fsSL https://php.new/install/linux/8.5)"
-```
-
-After installation, ask the user to restart their terminal. If the agent needs the restarted shell to continue, ask the user to reopen their terminal and rerun their original prompt.
-
-## Agent Setup
-
-Install Laravel Boost from the application root before making application changes:
-
-```sh
-composer require laravel/boost --dev
-php artisan boost:install
-```
-
-Boost replaces these bootstrap instructions with guidelines tailored to the application. After installation, read `AGENTS.md` again and continue with the user's original request using the generated guidelines.
-</laravel-boost-guidelines>
+- **お題の単語セットを入れ替えたい/増やしたい**(最も多い依頼): `docs/customization.md` の「編集すればいいファイル一覧」を参照。`resources/js/lib/customize/words/` 配下を編集する
+- カスタマイズを前提にした箇所には `// CUSTOMIZE:` というコメントが付いています。`grep -rn "CUSTOMIZE" resources/js/` で一覧できます
+- プロジェクト全体の設計は [docs/01-overview.md](./docs/01-overview.md) を参照してください
+- 実装の進め方・コミット規約は [docs/04-implementation-roadmap.md](./docs/04-implementation-roadmap.md) を参照してください
