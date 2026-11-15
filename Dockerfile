@@ -1,8 +1,8 @@
 FROM php:8.5-cli
 
-RUN apt-get update && apt-get install -y libsqlite3-dev && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y libsqlite3-dev libpq-dev && rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-install pdo pdo_sqlite
+RUN docker-php-ext-install pdo pdo_sqlite pdo_pgsql
 
 WORKDIR /var/www/html
 
