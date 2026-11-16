@@ -1,58 +1,57 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Word Learner
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**[https://app-production-88c956ac.up.railway.app/](https://app-production-88c956ac.up.railway.app/)**
 
-## About Laravel
+**誰でもgit cloneして自分用に作り替えられる、お題入れ替え式のタイピングゲームのテンプレート**です。「寿司打」のタイムアタック・コンボボーナスのゲーム性を引き継ぎつつ、お題とその判定方法を書き換えるだけで、英単語学習に限らずクイズ的な「問題→入力」形式のタイピングゲーム全般に転用できます。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+このリポジトリ自体は、作者が**一例として英検5級/4級/3級の英単語学習用にお題を入れた状態**で公開しています。英単語学習は数ある使い方の一つであり、テンプレートの本質はお題の内容に依存しません。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 自分用に作り替える
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+git cloneしたら、お使いのAIコーディングエージェント(Claude Code、Cursorなど)に話しかけるだけで単語セットを入れ替えられます。
 
-## Learning Laravel
+> 「このゲームのお題をTOEICの英単語に変えて」
+> 「英単語じゃなくて漢字の読み方クイズにして」
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+このリポジトリには`AGENTS.md`(`CLAUDE.md`も同内容)が置いてあり、AIエージェントがそれを読めば[docs/customization.md](./docs/customization.md)に沿って`resources/js/lib/customize/`配下(お題データ・制限時間などの定数)を編集してくれます。手で編集したい場合も同じ場所を見てください。それ以外の`resources/js/lib/`配下はゲームの内部ロジックなので、触る必要はありません。
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ローカルで動かす
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+詳細は [docs/infra/local-dev.md](./docs/infra/local-dev.md) を参照。ホストにPHP/Composer/Nodeは不要で、すべてDockerコンテナ内で動きます。
 
 ```bash
-composer require laravel/boost --dev
+cp .env.example .env
 
-php artisan boost:install
+HOST_UID=$(id -u) HOST_GID=$(id -g) docker compose up -d --build
+
+docker compose exec app php artisan key:generate
+docker compose exec app php artisan migrate
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+`http://localhost:8000` でアプリにアクセスできる。
 
-## Contributing
+## 遊び方
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. トップページで級(5級/4級/3級)とモードを選ぶ
+   - 学習モード: 答えを見ながら練習する
+   - チャレンジモード: 答えを隠して挑戦する。ログインしていればスコアがランキングに記録される
+2. 「START GAME」を押すと3秒のカウントダウンのあとスタート
+3. 60秒以内にできるだけ多くの単語をタイピングする。ノーミスで5問連続正解するごとに残り時間+2秒のボーナス
 
-## Code of Conduct
+ログインしなくても遊べる。ログインが必要なのはスコアをランキングに残すときだけ。
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## テスト
 
-## Security Vulnerabilities
+```bash
+docker compose exec app php artisan test       # バックエンド
+docker compose exec node npx vitest run        # フロントエンド(ゲームロジック)
+docker compose exec node npx tsc --noEmit       # 型チェック
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 技術スタック
 
-## License
+Laravel + Inertia.js + React(TypeScript)+ Tailwind CSS のモノリス構成、PostgreSQL、Railwayへのデプロイ。
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## ドキュメント
+
+詳しい設計・決定事項は [docs/](./docs/01-overview.md) を参照してください。
